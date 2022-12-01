@@ -1,10 +1,8 @@
 
-from sqlalchemy import Column, Integer, String
-from sqlalchemy.orm import relationship
 from datetime import datetime
 
-
-from sqlalchemy import DateTime
+from sqlalchemy import Column, DateTime, Integer, String
+from sqlalchemy.orm import relationship
 
 from ..database.database import DBase
 
