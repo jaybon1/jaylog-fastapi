@@ -1,13 +1,13 @@
 from pydantic import BaseModel
 
 
-class ReqJoinDTO(BaseModel):
+class Req(BaseModel):
     id: str
     password: str
     simpleDesc: str
 
 
-class ResJoinDTO(BaseModel):
+class Res(BaseModel):
     idx: int
 
     class Config:

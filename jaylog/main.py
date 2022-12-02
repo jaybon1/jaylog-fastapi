@@ -1,9 +1,9 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from .controller import join_controller, login_controller
-
-from .util import functions
+from jaylog.controller import (join_controller, login_controller,
+                               post_controller)
+from jaylog.util import functions
 
 app = FastAPI()
 
@@ -21,6 +21,7 @@ app.add_middleware(
 
 app.include_router(join_controller.router)
 app.include_router(login_controller.router)
+app.include_router(post_controller.router)
 
 
 @app.get("/")

@@ -1,5 +1,4 @@
 from datetime import datetime
-import json
 
 import bcrypt
 from sqlalchemy.orm import Session
@@ -16,7 +15,7 @@ USER_ID_EXIST_ERROR = {"code": 1, "message": "이미 존재하는 아이디입�
 INTERNAL_SERVER_ERROR = {"code": 99, "message": "서버 내부 에러입니다."}
 
 
-def join(reqDTO: join_dto.ReqJoinDTO, db: Session):
+def join(reqDTO: join_dto.Req, db: Session):
 
     userEntity: UserEntity = db.query(UserEntity).filter(
         UserEntity.id == reqDTO.id).first()
@@ -46,4 +45,4 @@ def join(reqDTO: join_dto.ReqJoinDTO, db: Session):
 
     db.refresh(db_user)
 
-    return functions.res_generator(status_code=201, content=join_dto.ResJoinDTO(idx=db_user.idx))
+    return functions.res_generator(status_code=201, content=join_dto.Res(idx=db_user.idx))

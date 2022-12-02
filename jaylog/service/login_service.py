@@ -6,7 +6,6 @@ from sqlalchemy.orm import Session
 from fastapi.encoders import jsonable_encoder
 
 from ..dto import login_dto
-from ..dto.login_dto import ReqLoginDTO, ResLoginDTO, JwtDTO
 # 엔티티 연관관계 호출하기 전에 엔티티들 먼저 import 해줘야 함
 # 사용하지 않더라도 import 해줘야 함
 from ..entity.like_entity import LikeEntity
@@ -20,7 +19,7 @@ PASSWORD_INCORRECT_ERROR = {"code": 3, "message": "비밀번호가 일치하지 
 INTERNAL_SERVER_ERROR = {"code": 99, "message": "서버 내부 에러입니다."}
 
 
-def login(reqDTO: login_dto.ReqLoginDTO, db: Session):
+def login(reqDTO: login_dto.Req, db: Session):
 
     userEntity: UserEntity = db.query(UserEntity).filter(
         UserEntity.id == reqDTO.id).first()
@@ -34,7 +33,7 @@ def login(reqDTO: login_dto.ReqLoginDTO, db: Session):
     if (not bcrypt.checkpw(reqDTO.password.encode("utf-8"), userEntity.password.encode("utf-8"))):
         return functions.res_generator(400, PASSWORD_INCORRECT_ERROR)
 
-    jwtDTO = JwtDTO(
+    jwtDTO = login_dto.Jwt(
         idx=userEntity.idx,
         id=userEntity.id,
         simpleDesc=userEntity.simple_desc,
@@ -46,4 +45,4 @@ def login(reqDTO: login_dto.ReqLoginDTO, db: Session):
     accessToken = jwt.encode(jsonable_encoder(jwtDTO), "1111secret")
     refreshToken = "준비중"
 
-    return functions.res_generator(status_code=200, data=ResLoginDTO(accessToken=accessToken, refreshToken=refreshToken))
+    return functions.res_generator(status_code=200, data=login_dto.Res(accessToken=accessToken, refreshToken=refreshToken))

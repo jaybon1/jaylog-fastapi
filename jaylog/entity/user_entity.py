@@ -20,4 +20,4 @@ class UserEntity(DBase):
     update_date = Column(DateTime, onupdate=datetime.now)
     delete_date = Column(DateTime)
 
-    posts = relationship("PostEntity", back_populates="user")
+    postEntitys = relationship("PostEntity", back_populates="userEntity")

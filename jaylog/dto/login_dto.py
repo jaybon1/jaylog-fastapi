@@ -2,17 +2,17 @@ from pydantic import BaseModel
 from datetime import datetime
 
 
-class ReqLoginDTO(BaseModel):
+class Req(BaseModel):
     id: str
     password: str
 
 
-class ResLoginDTO(BaseModel):
+class Res(BaseModel):
     accessToken: str
     refreshToken: str
 
 
-class JwtDTO(BaseModel):
+class Jwt(BaseModel):
     idx: int
     id: str
     simpleDesc: str
