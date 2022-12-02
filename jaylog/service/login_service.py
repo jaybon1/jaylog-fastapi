@@ -46,4 +46,4 @@ def login(reqDTO: login_dto.ReqLoginDTO, db: Session):
     accessToken = jwt.encode(jsonable_encoder(jwtDTO), "1111secret")
     refreshToken = "준비중"
 
-    return functions.res_generator(status_code=200, data=ResLoginDTO(accessToken=accessToken))
+    return functions.res_generator(status_code=200, data=ResLoginDTO(accessToken=accessToken, refreshToken=refreshToken))
