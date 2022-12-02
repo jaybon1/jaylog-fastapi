@@ -5,7 +5,7 @@ CREATE TABLE `User` (
   `id` varchar(100) NOT NULL COMMENT '유저 아이디',
   `password` varchar(100) NOT NULL COMMENT '유저 비밀번호',
   `simple_desc` varchar(200) DEFAULT NULL COMMENT '한 줄 소개',
-  `profile_image` mediumtext DEFAULT NULL COMMENT '프로필 이미지',
+  `profile_image` mediumtext DEFAULT 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png' COMMENT '프로필 이미지',
   `role` varchar(100) NOT NULL DEFAULT 'BLOGER' COMMENT '유저 등급',
   `create_date` datetime NOT NULL DEFAULT current_timestamp() COMMENT '생성일',
   `update_date` datetime DEFAULT NULL COMMENT '수정일',

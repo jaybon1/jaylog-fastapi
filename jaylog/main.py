@@ -1,7 +1,9 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from .controller import join_controller
+from .controller import join_controller, login_controller
+
+from .util import functions
 
 app = FastAPI()
 
@@ -18,5 +20,11 @@ app.add_middleware(
 )
 
 app.include_router(join_controller.router)
+app.include_router(login_controller.router)
+
+
+@app.get("/")
+async def test():
+    return functions.res_generator()
 
 # app.router.redirect_slashes = False

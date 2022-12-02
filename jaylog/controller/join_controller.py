@@ -3,7 +3,7 @@ from fastapi.responses import JSONResponse
 from sqlalchemy.orm import Session
 
 from ..dependencies import get_db
-from ..dto.join_dto import ReqJoinUserDTO
+from ..dto.join_dto import ReqJoinDTO
 from ..service import join_service
 
 router = APIRouter(
@@ -13,5 +13,5 @@ router = APIRouter(
 
 
 @router.post("/")
-async def test(dto: ReqJoinUserDTO, db: Session = Depends(get_db)) -> JSONResponse:
-    return join_service.join_user(dto, db)
+async def join(reqDTO: ReqJoinDTO, db: Session = Depends(get_db)) -> JSONResponse:
+    return join_service.join(reqDTO, db)

@@ -1,5 +1,6 @@
 from datetime import datetime
 
+import bcrypt
 from sqlalchemy.orm import Session
 
 from ..dto import join_dto
@@ -14,18 +15,19 @@ USER_ID_EXIST_ERROR = {"code": 1, "message": "이미 존재하는 아이디입�
 INTERNAL_SERVER_ERROR = {"code": 99, "message": "서버 내부 에러입니다."}
 
 
-def join_user(userDTO: join_dto.ReqJoinUserDTO, db: Session):
+def join(reqDTO: join_dto.ReqJoinDTO, db: Session):
 
     userEntity: UserEntity = db.query(UserEntity).filter(
-        UserEntity.id == userDTO.id).first()
+        UserEntity.id == reqDTO.id).first()
 
     if (userEntity != None):
         return functions.res_generator(400, USER_ID_EXIST_ERROR)
 
     db_user = UserEntity(
-        id=userDTO.id,
-        password=userDTO.password,
-        simple_desc=userDTO.simpleDesc if userDTO.simpleDesc else "한 줄 소개가 없습니다.",
+        id=reqDTO.id,
+        password=bcrypt.hashpw(
+            reqDTO.password.encode("utf-8"), bcrypt.gensalt()),
+        simple_desc=reqDTO.simpleDesc if reqDTO.simpleDesc else "한 줄 소개가 없습니다.",
         profile_image="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
         role="BLOGER",
         create_date=datetime.now(),
@@ -43,4 +45,4 @@ def join_user(userDTO: join_dto.ReqJoinUserDTO, db: Session):
 
     db.refresh(db_user)
 
-    return functions.res_generator(data=join_dto.ResJoinUserDTO(idx=db_user.idx))
+    return functions.res_generator(status_code=201, data=join_dto.ResJoinDTO(idx=db_user.idx))
