@@ -24,6 +24,7 @@ class Res(BaseModel):
     title: str
     summary: str
     likeCount: int
+    createDate: datetime
     user: _User
 
     @staticmethod
@@ -34,6 +35,7 @@ class Res(BaseModel):
             title=postEntity.title,
             summary=postEntity.summary,
             likeCount=len(postEntity.likeEntitys),
+            createDate=postEntity.create_date,
             user=_User.toDTO(postEntity.userEntity)
         )
 
