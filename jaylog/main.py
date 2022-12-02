@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 
 # 엔티티 연관관계 호출하기 전에 엔티티들 먼저 import 해줘야 함
@@ -32,7 +32,8 @@ app.include_router(post_controller.router)
 
 
 @app.get("/")
-async def test():
-    return functions.res_generator()
+async def test(request: Request):
+    print(request.headers.get('Authorization'))
+    return functions.res_generator(content=request.headers.get('Authorization'))
 
 # app.router.redirect_slashes = False
