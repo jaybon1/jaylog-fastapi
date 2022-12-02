@@ -1,4 +1,5 @@
 from datetime import datetime
+import json
 
 import bcrypt
 from sqlalchemy.orm import Session
@@ -39,10 +40,10 @@ def join(reqDTO: join_dto.ReqJoinDTO, db: Session):
     except Exception as e:
         db.rollback()
         print(e)
-        return functions.res_generator(status_code=500, error_dict=INTERNAL_SERVER_ERROR, data=e)
+        return functions.res_generator(status_code=500, error_dict=INTERNAL_SERVER_ERROR, content=e)
     finally:
         db.commit()
 
     db.refresh(db_user)
 
-    return functions.res_generator(status_code=201, data=join_dto.ResJoinDTO(idx=db_user.idx))
+    return functions.res_generator(status_code=201, content=join_dto.ResJoinDTO(idx=db_user.idx))
