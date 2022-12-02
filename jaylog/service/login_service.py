@@ -2,16 +2,13 @@ from datetime import datetime, timedelta
 
 import bcrypt
 import jwt
-from sqlalchemy.orm import Session
 from fastapi.encoders import jsonable_encoder
+from sqlalchemy.orm import Session
 
-from ..dto import login_dto
-# 엔티티 연관관계 호출하기 전에 엔티티들 먼저 import 해줘야 함
-# 사용하지 않더라도 import 해줘야 함
-from ..entity.like_entity import LikeEntity
-from ..entity.post_entity import PostEntity
-from ..entity.user_entity import UserEntity
-from ..util import functions
+from jaylog.entity.user_entity import UserEntity
+
+from jaylog.dto import login_dto
+from jaylog.util import functions
 
 ID_NOT_EXIST_ERROR = {"code": 1, "message": "가입되지 않은 아이디 입니다."}
 DELETED_USER_ERROR = {"code": 2, "message": "삭제된 회원입니다."}

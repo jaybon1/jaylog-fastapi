@@ -3,13 +3,10 @@ from datetime import datetime
 import bcrypt
 from sqlalchemy.orm import Session
 
-from ..dto import join_dto
-# 엔티티 연관관계 호출하기 전에 엔티티들 먼저 import 해줘야 함
-# 사용하지 않더라도 import 해줘야 함
-from ..entity.like_entity import LikeEntity
-from ..entity.post_entity import PostEntity
-from ..entity.user_entity import UserEntity
-from ..util import functions
+from jaylog.entity.user_entity import UserEntity
+
+from jaylog.dto import join_dto
+from jaylog.util import functions
 
 USER_ID_EXIST_ERROR = {"code": 1, "message": "이미 존재하는 아이디입니다."}
 INTERNAL_SERVER_ERROR = {"code": 99, "message": "서버 내부 에러입니다."}

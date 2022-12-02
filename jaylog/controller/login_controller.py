@@ -2,9 +2,9 @@ from fastapi import APIRouter, Depends
 from fastapi.responses import JSONResponse
 from sqlalchemy.orm import Session
 
-from ..dependencies import get_db
-from ..dto.login_dto import Req
-from ..service import login_service
+from jaylog.dependencies import get_db
+from jaylog.dto.login_dto import Req
+from jaylog.service import login_service
 
 router = APIRouter(
     prefix="/login",

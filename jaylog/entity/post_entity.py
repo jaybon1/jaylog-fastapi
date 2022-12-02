@@ -4,7 +4,7 @@ from datetime import datetime
 from sqlalchemy import Column, DateTime, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
 
-from ..database.database import DBase
+from jaylog.database.database import DBase
 
 
 class PostEntity(DBase):

@@ -4,7 +4,7 @@ from sqlalchemy.orm import Session
 
 from jaylog.service import post_service
 
-from ..dependencies import get_db
+from jaylog.dependencies import get_db
 
 router = APIRouter(
     prefix="/post",

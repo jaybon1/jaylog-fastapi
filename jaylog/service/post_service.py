@@ -1,13 +1,9 @@
 from datetime import datetime
 from sqlalchemy.orm import Session
 
-from ..dto import post_dto
-# 엔티티 연관관계 호출하기 전에 엔티티들 먼저 import 해줘야 함
-# 사용하지 않더라도 import 해줘야 함
-from ..entity.like_entity import LikeEntity
-from ..entity.post_entity import PostEntity
-from ..entity.user_entity import UserEntity
-from ..util import functions
+from jaylog.dto import post_dto
+from jaylog.entity.post_entity import PostEntity
+from jaylog.util import functions
 
 INTERNAL_SERVER_ERROR = {"code": 99, "message": "서버 내부 에러입니다."}
 

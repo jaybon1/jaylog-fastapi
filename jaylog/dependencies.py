@@ -1,4 +1,4 @@
-from .database.database import SessionLocal
+from jaylog.database.database import SessionLocal
 
 # 디펜던시
 
