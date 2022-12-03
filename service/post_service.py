@@ -1,9 +1,9 @@
 from datetime import datetime
 from sqlalchemy.orm import Session
 
-from jaylog.dto import post_dto
-from jaylog.entity.post_entity import PostEntity
-from jaylog.util import functions
+from dto import post_dto
+from entity.post_entity import PostEntity
+from util import functions
 
 INTERNAL_SERVER_ERROR = {"code": 99, "message": "서버 내부 에러입니다."}
 

@@ -3,10 +3,10 @@ from datetime import datetime
 import bcrypt
 from sqlalchemy.orm import Session
 
-from jaylog.entity.user_entity import UserEntity
+from entity.user_entity import UserEntity
 
-from jaylog.dto import join_dto
-from jaylog.util import functions
+from dto import join_dto
+from util import functions
 
 USER_ID_EXIST_ERROR = {"code": 1, "message": "이미 존재하는 아이디입니다."}
 INTERNAL_SERVER_ERROR = {"code": 99, "message": "서버 내부 에러입니다."}

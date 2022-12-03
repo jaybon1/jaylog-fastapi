@@ -1,7 +1,7 @@
 from fastapi.encoders import jsonable_encoder
 from fastapi.responses import JSONResponse
 
-from jaylog.dto import res_dto
+from dto import res_dto
 
 
 def res_generator(status_code: int = 200, error_dict: dict | None = None, content: object | None = None):

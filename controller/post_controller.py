@@ -2,9 +2,9 @@ from fastapi import APIRouter, Depends
 from fastapi.responses import JSONResponse
 from sqlalchemy.orm import Session
 
-from jaylog.service import post_service
+from service import post_service
 
-from jaylog.dependencies import get_db
+from dependencies import get_db
 
 router = APIRouter(
     prefix="/post",

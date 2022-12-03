@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 from datetime import datetime
-from jaylog.entity.post_entity import PostEntity
-from jaylog.entity.user_entity import UserEntity
+from entity.post_entity import PostEntity
+from entity.user_entity import UserEntity
 
 
 class _User(BaseModel):

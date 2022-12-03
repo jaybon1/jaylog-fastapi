@@ -5,10 +5,10 @@ import jwt
 from fastapi.encoders import jsonable_encoder
 from sqlalchemy.orm import Session
 
-from jaylog.entity.user_entity import UserEntity
+from entity.user_entity import UserEntity
 
-from jaylog.dto import login_dto
-from jaylog.util import functions
+from dto import login_dto
+from util import functions
 
 ID_NOT_EXIST_ERROR = {"code": 1, "message": "가입되지 않은 아이디 입니다."}
 DELETED_USER_ERROR = {"code": 2, "message": "삭제된 회원입니다."}

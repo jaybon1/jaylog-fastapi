@@ -1,16 +1,17 @@
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
+import uvicorn
 
 # 엔티티 연관관계 호출하기 전에 엔티티들 먼저 import 해줘야 함
 # 해당 파일에서 사용하지 않더라도 import 해줘야 함
 # 최상단 파일에서 import 하여 어디든 사용 가능하도록 함
-from jaylog.entity.like_entity import LikeEntity
-from jaylog.entity.post_entity import PostEntity
-from jaylog.entity.user_entity import UserEntity
+from entity.like_entity import LikeEntity
+from entity.post_entity import PostEntity
+from entity.user_entity import UserEntity
 
-from jaylog.controller import (join_controller, login_controller,
-                               post_controller)
-from jaylog.util import functions
+from controller import (join_controller, login_controller,
+                        post_controller)
+from util import functions
 
 app = FastAPI()
 
@@ -37,3 +38,8 @@ async def test(request: Request):
     return functions.res_generator(content=request.headers.get('Authorization'))
 
 # app.router.redirect_slashes = False
+if __name__ == "__main__":
+    # TODO 로컬 배포
+    uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)
+    # TODO 실서버 배포
+    # uvicorn.run("main:app", host="0.0.0.0", port=8000)

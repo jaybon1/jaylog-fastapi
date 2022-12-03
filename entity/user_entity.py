@@ -4,7 +4,7 @@ from datetime import datetime
 from sqlalchemy import Column, DateTime, Integer, String
 from sqlalchemy.orm import relationship
 
-from jaylog.database.database import DBase
+from database.database import DBase
 
 
 class UserEntity(DBase):
